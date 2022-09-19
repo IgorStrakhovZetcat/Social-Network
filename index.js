@@ -8,7 +8,7 @@ import {PostController, UserController, CommentController} from './controllers/i
 
 
 
-mongoose.connect('mongodb+srv://admin:12345@cluster0.jkgcxu8.mongodb.net/blog?retryWrites=true&w=majority')
+mongoose.connect(process.env.MONGODB_URL)
 .then(() => console.log('DB ok'))
 .catch((err) => console.log('DB error', err))
 
