@@ -8,7 +8,11 @@ import {PostController, UserController, CommentController} from './controllers/i
 
 
 
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true
+})
 .then(() => console.log('DB ok'))
 .catch((err) => console.log('DB error', err))
 
