@@ -1,0 +1,12 @@
+1) npm init
+2) npm i express
+3) npm i nodemon
+4) npm run start:dev
+5) node index.js
+6) npm i jsonwebtoken
+7) npm i mongoose
+8) npm i express-validator
+9) npm i bcrypt
+10) npm i multer
+11) npm i cors
+11) npm install fs-js
