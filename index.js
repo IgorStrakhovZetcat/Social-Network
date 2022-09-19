@@ -62,7 +62,7 @@ app.post('/comments', checkAuth, commentCreateValidation, handleValidationErrors
 app.patch('/comments/:id', checkAuth, commentCreateValidation, handleValidationErrors, CommentController.update)
 app.delete('/comments/:id', checkAuth, CommentController.remove)
 
-app.listen(4444, (err) => {
+app.listen(process.env.PORT || 4444, (err) => {
     if(err){
         return console.log(err)
     }
