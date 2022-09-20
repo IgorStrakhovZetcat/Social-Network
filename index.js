@@ -5,10 +5,11 @@ import mongoose from 'mongoose';
 import { registerValidation, loginValidation, postCreateValidation, commentCreateValidation } from './validations.js';
 import {checkAuth, handleValidationErrors} from './utils/index.js';
 import {PostController, UserController, CommentController} from './controllers/index.js'
+import { MONGODB_URL } from './mongoDB/url.js';
 
 
 
-mongoose.connect(process.env.MONGODB_URL)
+mongoose.connect(MONGODB_URL)
 .then(() => console.log('DB ok'))
 .catch((err) => console.log('DB error', err))
 
@@ -62,7 +63,7 @@ app.post('/comments', checkAuth, commentCreateValidation, handleValidationErrors
 app.patch('/comments/:id', checkAuth, commentCreateValidation, handleValidationErrors, CommentController.update)
 app.delete('/comments/:id', checkAuth, CommentController.remove)
 
-app.listen(process.env.PORT || 4444, (err) => {
+app.listen(4444, (err) => {
     if(err){
         return console.log(err)
     }
