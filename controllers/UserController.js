@@ -17,6 +17,7 @@ export const register = async (req, res) => {
         passwordHash: hash,
         fullName: req.body.fullName,
         avatarUrl: req.body.avatarUrl,
+        friends: req.body.friends
     })
 
     const user = await doc.save();
@@ -105,3 +106,17 @@ export const getMe = async (req, res) => {
         })
     };
 }
+
+export const getAll = async (req, res) => {
+    try {
+        const users = await UserModel.find().exec();
+
+        res.json(users)
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message: 'We cant get all users'
+        })
+    }
+}
+

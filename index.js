@@ -4,7 +4,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import { registerValidation, loginValidation, postCreateValidation, commentCreateValidation } from './validations.js';
 import {checkAuth, handleValidationErrors} from './utils/index.js';
-import {PostController, UserController, CommentController} from './controllers/index.js'
+import {PostController, UserController, CommentController, FriendsController} from './controllers/index.js'
 import { MONGODB_URL } from './mongoDB/url.js';
 
 
@@ -35,6 +35,7 @@ app.use('/uploads', express.static('uploads'))
 app.post('/auth/login', loginValidation, handleValidationErrors, UserController.login)
 app.post('/auth/register', registerValidation, handleValidationErrors, UserController.register)
 app.get('/auth/me', checkAuth, UserController.getMe)
+app.get('/users', checkAuth, UserController.getAll)
 
 app.post('/upload/avatar', upload, (req, res) => {
     res.json({
@@ -62,6 +63,10 @@ app.get('/comments', CommentController.getAll)
 app.post('/comments', checkAuth, commentCreateValidation, handleValidationErrors, CommentController.create)
 app.patch('/comments/:id', checkAuth, commentCreateValidation, handleValidationErrors, CommentController.update)
 app.delete('/comments/:id', checkAuth, CommentController.remove)
+
+app.post('/friends', checkAuth, FriendsController.create)
+app.get('/friends', checkAuth, FriendsController.getAll)
+app.patch('/friends/:id', checkAuth, FriendsController.addFriend)
 
 app.listen(4444, (err) => {
     if(err){

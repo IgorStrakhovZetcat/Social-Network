@@ -3,8 +3,8 @@ import { body } from "express-validator";
 
 
 export const loginValidation = [
-    body('email', "wrong email").isEmail(), 
-    body('password', 'wrong password').isLength({ min: 5 }),
+    body('email', "wrong email or password").isEmail(), 
+    body('password', 'wrong email or password').isLength({ min: 5 }),
 ]
 
 export const registerValidation = [
@@ -25,3 +25,4 @@ export const commentCreateValidation = [
     body('text', 'wrong text').isLength({ min: 1 }).isString(),
     body('postId', 'wrong postId').isString()
 ]
+
